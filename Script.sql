@@ -151,7 +151,7 @@ select nome from cliente where nome like '%c%';
 select nome from cliente where nome like '%a%';
 
 --exercio 5 usando comando WHERE, acrescentado o LIKE, Os clientes que moram no bairro “Centro” (3 resultados)
-select nome, bairro from cliente where bairro like  'Centro';
+select nome, bairro from cliente where bairro = 'Centro' or bairro = 'Cto.' or bairro = 'Ctr'
 
 --exercio 6 usando comando WHERE, acrescentado o LIKE, Os clientes que moram em complementos que iniciam com a letra “A”(3 resultados)
 select nome, complemento from cliente where complemento like 'A%';
