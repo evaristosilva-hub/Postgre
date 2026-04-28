@@ -138,15 +138,29 @@ select * from cliente limit 3;
 --consulta usando comando where
 select nome, data_nascimento from cliente where data_nascimento>'2001-01-01';
 
---exercio usando comando WHERE, acrescentado o LIKE, nome com a letra R 9 resultados
+--exercio 1 usando comando WHERE, acrescentado o LIKE,  O nome, o gênero e a profissão de todos os clientes, ordenado pelo nome em ordem decrescente(15 resultados)
+select nome, genero, profissao from cliente order by nome desc ;
+
+--exercio 2 usando comando WHERE, acrescentado o LIKE, Os clientes que tenham a letra “R” no nome (9 resultados)
 select nome from cliente where nome like '%r%';
 
---exercio usando comando WHERE, acrescentado o LIKE, nome com a letra C 2 resultados
+--exercio 3 usando comando WHERE, acrescentado o LIKE, Os clientes que o nome inicia com a letra “C” (2 resultados)
 select nome from cliente where nome like '%c%';
 
---exercio usando comando WHERE, acrescentado o LIKE, nome com a letra A 11 resultados
+--exercio 4 usando comando WHERE, acrescentado o LIKE, Os clientes que o nome termina com a letra “A” (11 resultados)
 select nome from cliente where nome like '%a%';
 
+--exercio 5 usando comando WHERE, acrescentado o LIKE, Os clientes que moram no bairro “Centro” (3 resultados)
+select nome, bairro from cliente where bairro like  'Centro';
+
+--exercio 6 usando comando WHERE, acrescentado o LIKE, Os clientes que moram em complementos que iniciam com a letra “A”(3 resultados)
+select nome, complemento from cliente where complemento like 'A%';
+
+--exercio 7 usando comando WHERE, acrescentado o LIKE, Somente os clientes do sexo feminino(5 resultados)
+select nome, genero from cliente where genero like 'F';
+
+--exercio 7 usando comando WHERE, acrescentado o LIKE, Os clientes que não informaram o CPF(5 resultados)
+select nome, cpf from cliente where cpf is null or cpf = '';
 
 
 		
