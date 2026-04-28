@@ -159,7 +159,7 @@ select nome, complemento from cliente where complemento like 'A%';
 --exercio 7 usando comando WHERE, acrescentado o LIKE, Somente os clientes do sexo feminino(5 resultados)
 select nome, genero from cliente where genero like 'F';
 
---exercio 7 usando comando WHERE, acrescentado o LIKE, Os clientes que não informaram o CPF(5 resultados)
+--exercio 8 usando comando WHERE, acrescentado o LIKE, Os clientes que não informaram o CPF(5 resultados)
 select nome, cpf from cliente where cpf is null or cpf = '';
 
 
