@@ -214,13 +214,22 @@ insert into cliente (idcliente, nome, cpf, rg, data_nascimento, genero,
 					bairro, municipio, uf) values (18, 'Sandra', null, null, null,
 					'M','Professor', 'Italiana', '', '12', 'Bloco A', '', '', '');
 
---2. Altere os dados do cliente Maicon: O CPF para 45390569432, O gênero para M, A nacionalidade para Brasileira, O UF para SC
+--2. Altere os dados do cliente Maicon: 
+						--O CPF para 45390569432 
+						--O gênero para M 
+						--A nacionalidade para Brasileira 
+						--O UF para SC
 update cliente set nome = 'Miacon', cpf = '45390569432', genero = 'M' , nacionalidade = 'Brasileira', uf = 'SC' where idcliente = 16;
 
---3. Altere os dados do cliente Getúlio: A data de nascimento para 01/04/1978, O gênero para M
+--3. Altere os dados do cliente Getúlio: 
+						--A data de nascimento para 01/04/1978 
+						--O gênero para M
 update cliente set data_nascimento = '1978-04-01', genero = 'M' where idcliente = 17;
 
---4. Altere os dados da cliente Sandra: O gênero para F, A profissão para Professora, O número para 123
+--4. Altere os dados da cliente Sandra: 
+						--O gênero para F, 
+						--A profissão para Professora, 
+						--O número para 123
 update cliente set genero = 'F', profissao = 'Professora', numero = '123' where idcliente = 18;
 
 --5. Apague o cliente Maicon
