@@ -121,7 +121,7 @@ values(15,'Jessica', '', '', '2001-01-30', 'F',
 		'Estudante', '', '', '', 
 		'', '', 'Porto União', 'SC');
 
-
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 select * from cliente;
 
 select nome, data_nascimento from cliente;
@@ -134,7 +134,7 @@ select 'CPF: ' || cpf || 'RG: ' || rg as "CPF e RG" from cliente;
 
 select * from cliente limit 3;
 
-
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --consulta usando comando where
 select nome, data_nascimento from cliente where data_nascimento>'2001-01-01';
 
@@ -166,7 +166,7 @@ select nome, cpf from cliente where cpf is null or cpf = '';
 select nome, profissao from cliente order by profissao asc limit 4;
 
 --exercio 10 usando comando WHERE, acrescentado o LIKE, Os clientes de nacionalidade “Brasileira”(6 resultados)
-select nome, nacionalidade from cliente where nacionalidade like 'Brasileira';
+select nome, nacionalidade from cliente where nacionalidade like 'Brasil%';
 
 --exercio 11 usando comando WHERE, acrescentado IS NOT NULL AND, Os clientes que informaram o número da residência(11 resultados)
 select nome, numero from cliente where numero is not null and numero <> '';
@@ -178,5 +178,54 @@ select nome, uf from cliente where uf like 'SC';
 select nome, data_nascimento from cliente where data_nascimento between '2000-01-01' and '2002-01-01';
 
 --exercio 14 usando comando WHERE, acrescentado o CONCAT_WS e o AS , O nome do cliente e o logradouro, número, complemento, bairro, município e UF concatenado de todos os clientes (10 resultados)
-SELECT nome, CONCAT_WS(', ', logradouro, numero, complemento, bairro, municipio, uf) AS endereco
+SELECT nome, CONCAT_WS(' - ', logradouro, numero, complemento, bairro, municipio, uf) AS endereco
 FROM cliente;
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                          --Comandos UPDATE e DELETE
+--Alterar algo na tabela com UPDATE (sempre colocar a chave primaria o ID , comando perigoso)
+select * from cliente;
+
+update cliente set nome = 'Teste' where idcliente = 1;
+--Pode-se alterar varios campos.
+update cliente set nome = 'Adriano', genero = 'M' , numero = '241' where idcliente = 4;
+
+--Comando INSERT INTO simplificado
+insert into cliente (idcliente, nome) values (16, 'João');
+
+--Comando para apagar o cliente
+delete from cliente where idcliente = 16;
+
+
+                        --Exercicios-Comando update e delete--
+-- 1.Insira os dados abaixo na tabela de cliente
+insert into cliente (idcliente, nome, cpf, rg, data_nascimento, genero,
+					profissao, nacionalidade, logradouro, numero, complemento,
+					bairro, municipio, uf) values (16, 'Maicon', '12349596421', '1234', '1965-01-10',
+					'F','Empresário', '', '', '', '', '', 'Florianpólis', 'PR');
+
+insert into cliente (idcliente, nome, cpf, rg, data_nascimento, genero,
+					profissao, nacionalidade, logradouro, numero, complemento,
+					bairro, municipio, uf) values (17, 'Getúlio', null, '1234', null,
+					'F','Estudante', 'Brasileira', 'Rua Central', '343', 'Apartamento', 'Centro', 'Curitiba', 'SC');
+
+insert into cliente (idcliente, nome, cpf, rg, data_nascimento, genero,
+					profissao, nacionalidade, logradouro, numero, complemento,
+					bairro, municipio, uf) values (18, 'Sandra', null, null, null,
+					'M','Professor', 'Italiana', '', '12', 'Bloco A', '', '', '');
+
+--2. Altere os dados do cliente Maicon: O CPF para 45390569432, O gênero para M, A nacionalidade para Brasileira, O UF para SC
+update cliente set nome = 'Miacon', cpf = '45390569432', genero = 'M' , nacionalidade = 'Brasileira', uf = 'SC' where idcliente = 16;
+
+--3. Altere os dados do cliente Getúlio: A data de nascimento para 01/04/1978, O gênero para M
+update cliente set data_nascimento = '1978-04-01', genero = 'M' where idcliente = 17;
+
+--4. Altere os dados da cliente Sandra: O gênero para F, A profissão para Professora, O número para 123
+update cliente set genero = 'F', profissao = 'Professora', numero = '123' where idcliente = 18;
+
+--5. Apague o cliente Maicon
+delete from cliente where idcliente = 16;
+
+--6. Apague a cliente Sandra
+delete from cliente where idcliente = 18;
+
