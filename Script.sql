@@ -138,7 +138,7 @@ select * from cliente limit 3;
 --consulta usando comando where
 select nome, data_nascimento from cliente where data_nascimento>'2001-01-01';
 
---exercio 1 usando comando WHERE, acrescentado o LIKE,  O nome, o gênero e a profissão de todos os clientes, ordenado pelo nome em ordem decrescente(15 resultados)
+--exercio 1 usando comando ORDER BY, acrescentado o LIKE,  O nome, o gênero e a profissão de todos os clientes, ordenado pelo nome em ordem decrescente(15 resultados)
 select nome, genero, profissao from cliente order by nome desc ;
 
 --exercio 2 usando comando WHERE, acrescentado o LIKE, Os clientes que tenham a letra “R” no nome (9 resultados)
@@ -159,8 +159,24 @@ select nome, complemento from cliente where complemento like 'A%';
 --exercio 7 usando comando WHERE, acrescentado o LIKE, Somente os clientes do sexo feminino(5 resultados)
 select nome, genero from cliente where genero like 'F';
 
---exercio 8 usando comando WHERE, acrescentado o LIKE, Os clientes que não informaram o CPF(5 resultados)
+--exercio 8 usando comando WHERE, acrescentado o IS NULL OR, Os clientes que não informaram o CPF(4 resultados)
 select nome, cpf from cliente where cpf is null or cpf = '';
 
+--exercio 9 usando comando ORDER BY, acrescentado o ORDER BY , ASC, LIMIT, O nome e a profissão dos clientes, ordenado em ordem crescente pelo nome da profissão(15 resultados)
+select nome, profissao from cliente order by profissao asc limit 4;
 
-		
+--exercio 10 usando comando WHERE, acrescentado o LIKE, Os clientes de nacionalidade “Brasileira”(6 resultados)
+select nome, nacionalidade from cliente where nacionalidade like 'Brasileira';
+
+--exercio 11 usando comando WHERE, acrescentado IS NOT NULL AND, Os clientes que informaram o número da residência(11 resultados)
+select nome, numero from cliente where numero is not null and numero <> '';
+
+--exercio 12 usando comando WHERE, acrescentado o LIKE, Os clientes que moram em Santa Catarina (7 resultados)
+select nome, uf from cliente where uf like 'SC';
+
+--exercio 13 usando comando WHERE, acrescentado o BETWEEN e o AND , Os clientes que nasceram entre 01/01/2000 e 01/01/2002 (10 resultados)
+select nome, data_nascimento from cliente where data_nascimento between '2000-01-01' and '2002-01-01';
+
+--exercio 14 usando comando WHERE, acrescentado o CONCAT_WS e o AS , O nome do cliente e o logradouro, número, complemento, bairro, município e UF concatenado de todos os clientes (10 resultados)
+SELECT nome, CONCAT_WS(', ', logradouro, numero, complemento, bairro, municipio, uf) AS endereco
+FROM cliente;
