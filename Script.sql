@@ -121,7 +121,7 @@ values(15,'Jessica', '', '', '2001-01-30', 'F',
 		'Estudante', '', '', '', 
 		'', '', 'Porto União', 'SC');
 
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 select * from cliente;
 
 select nome, data_nascimento from cliente;
@@ -134,11 +134,11 @@ select 'CPF: ' || cpf || 'RG: ' || rg as "CPF e RG" from cliente;
 
 select * from cliente limit 3;
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 --consulta usando comando where
 select nome, data_nascimento from cliente where data_nascimento>'2001-01-01';
 
---exercio 1 usando comando ORDER BY, acrescentado o LIKE,  O nome, o gênero e a profissão de todos os clientes, ordenado pelo nome em ordem decrescente(15 resultados)
+--exercio 1 usando comando WHERE, acrescentado o LIKE,  O nome, o gênero e a profissão de todos os clientes, ordenado pelo nome em ordem decrescente(15 resultados)
 select nome, genero, profissao from cliente order by nome desc ;
 
 --exercio 2 usando comando WHERE, acrescentado o LIKE, Os clientes que tenham a letra “R” no nome (9 resultados)
@@ -151,7 +151,7 @@ select nome from cliente where nome like '%c%';
 select nome from cliente where nome like '%a%';
 
 --exercio 5 usando comando WHERE, acrescentado o LIKE, Os clientes que moram no bairro “Centro” (3 resultados)
-select nome, bairro from cliente where bairro = 'Centro' or bairro = 'Cto.' or bairro = 'Ctr'
+select nome, bairro from cliente where bairro like  'Centro';
 
 --exercio 6 usando comando WHERE, acrescentado o LIKE, Os clientes que moram em complementos que iniciam com a letra “A”(3 resultados)
 select nome, complemento from cliente where complemento like 'A%';
@@ -159,11 +159,14 @@ select nome, complemento from cliente where complemento like 'A%';
 --exercio 7 usando comando WHERE, acrescentado o LIKE, Somente os clientes do sexo feminino(5 resultados)
 select nome, genero from cliente where genero like 'F';
 
---exercio 8 usando comando WHERE, acrescentado o IS NULL OR, Os clientes que não informaram o CPF(4 resultados)
+--exercio 8 usando comando WHERE, acrescentado o LIKE, Os clientes que não informaram o CPF(5 resultados)
 select nome, cpf from cliente where cpf is null or cpf = '';
 
---exercio 9 usando comando ORDER BY, acrescentado o ORDER BY , ASC, LIMIT, O nome e a profissão dos clientes, ordenado em ordem crescente pelo nome da profissão(15 resultados)
+--exercio 9 usando comando WHERE, acrescentado o LIKE, O nome e a profissão dos clientes, ordenado em ordem crescente pelo nome da profissão(15 resultados)
 select nome, profissao from cliente order by profissao asc limit 4;
+
+--exercio 9 usando comando WHERE, acrescentado o LIKE, O nome e a profissão dos clientes, ordenado em ordem crescente pelo nome da profissão(15 resultados)
+select nome, nacionalidade from cliente order by profissao asc lim;
 
 --exercio 10 usando comando WHERE, acrescentado o LIKE, Os clientes de nacionalidade “Brasileira”(6 resultados)
 select nome, nacionalidade from cliente where nacionalidade like 'Brasil%';
@@ -271,7 +274,15 @@ insert into nacionalidade (idnacionalidade, nome) values (3, 'Norte-Americana');
 insert into nacionalidade (idnacionalidade, nome) values (4, 'Alemã');
 
 
-delete from nacionalidade where idnacionalidade = 5;
+create table complemento (
+	idcomplemento integer not null,
+	nome varchar (30) not null,
 
-select * from nacionalidade;
+	constraint pk_cpl_idcomplemento primary key (idcomplemento),
+	constraint un_cpl_nome unique (nome)
+);
 
+
+
+
+		
