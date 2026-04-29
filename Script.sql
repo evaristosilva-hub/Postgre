@@ -238,3 +238,40 @@ delete from cliente where idcliente = 16;
 --6. Apague a cliente Sandra
 delete from cliente where idcliente = 18;
 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+						--Criando de Novas Tabelas--
+
+create table profissao(
+	idprofissao integer not null,
+	nome varchar(30) not null,
+
+	constraint pk_prf_idprofissao primary key (idprofissao),
+	constraint un_prf_idnome unique (nome)
+);
+
+insert into profissao (idprofissao, nome) values (1, 'Estudante');
+insert into profissao (idprofissao, nome) values (2, 'Engenheiro');
+insert into profissao (idprofissao, nome) values (3, 'Pedreiro');
+insert into profissao (idprofissao, nome) values (4, 'Jornalista');
+insert into profissao (idprofissao, nome) values (5, 'Professor');
+
+select * from profissao;
+
+create table nacionalidade (
+	idnacionalidade integer not null,
+	nome varchar(30) not null,
+
+	constraint pk_ncn_idnacionalidade primary key (idNacionalidade),
+	constraint un_ncn_nome unique (nome)
+);
+
+insert into nacionalidade (idnacionalidade, nome) values (1, 'Brasileira');
+insert into nacionalidade (idnacionalidade, nome) values (2, 'Italiana');
+insert into nacionalidade (idnacionalidade, nome) values (3, 'Norte-Americana');
+insert into nacionalidade (idnacionalidade, nome) values (4, 'Alemã');
+
+
+delete from nacionalidade where idnacionalidade = 5;
+
+select * from nacionalidade;
+
