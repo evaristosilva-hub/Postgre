@@ -299,7 +299,25 @@ insert into bairro (idbairro, nome) values (2,'Centro');
 insert into bairro (idbairro, nome) values (3,'São Pedro');
 insert into bairro (idbairro, nome) values (4,'Santa Rosa');
 
+--Estudante -> 1,9,10,12,15,17
+--Engenheiro -> 2
+--Pedreiro -> 3
+--Jornalista -> 4,5
+--Professor -> 6,7,8,13
+--Null -> 11,14
 
-select * from bairro
+alter table cliente rename column profissao to idprofissao;
+alter table cliente drop idprofissao;
+select * from cliente		
+alter table cliente add idprofissao integer;
 
-		
+--relacionamento entre tabelas usando chave estrangeira
+alter table cliente add constraint fK_cln_idprofissao foreign key (idprofissao) references profissao (idprofissao);
+
+update cliente set idprofissao = 1 where idcliente in (1,9,10,12,15,17);
+update cliente set idprofissao = 2 where idcliente = 2;
+update cliente set idprofissao = 3 where idcliente = 3;
+update cliente set idprofissao = 4 where idcliente in (4,5);
+update cliente set idprofissao = 5 where idcliente in (6,7,8,13);
+
+select * from profissao;
