@@ -357,3 +357,43 @@ update cliente set idbairro = 2 where idcliente in (8,9,17,3,6);
 update cliente set idbairro = 3 where idcliente in (5,6);
 update cliente set idbairro = 4 where idcliente = 7;
 
+
+create table uf(
+	iduf integer not null,
+	nome varchar(30) not null,
+	sigla char(2) not null,
+
+	constraint pk_ufd_idunidade_federacao primary key (iduf),
+	constraint un_ufd_nome unique (nome),
+	constraint un_ufd_sigla unique (sigla)
+);
+
+insert into uf (iduf, nome, sigla) values (1, 'Santa Catarina', 'SC');
+insert into uf (iduf, nome, sigla) values (2, 'Paraná', 'PR');
+insert into uf (iduf, nome, sigla) values (3, 'São Paulo', 'SP');
+insert into uf (iduf, nome, sigla) values (4, 'Minas Gerais', 'MG');
+insert into uf (iduf, nome, sigla) values (5, 'Rio Grande do Sul', 'RS');
+insert into uf (iduf, nome, sigla) values (6, 'Rio de Janeiro', 'RJ');
+
+select * from uf
+
+create table municipio(
+	idmunicipio integer not null,
+	nome varchar(30) not null,
+	iduf integer not null,
+
+	constraint pk_mnc_idmunicipio primary key (idmunicipio),
+	constraint un_mnc_nome unique (nome),
+	constraint fk_mnc_iduf foreign key (iduf) references uf (iduf)
+);
+
+insert into municipio (idmunicipio, nome, iduf) values (1, 'Porto União', 1);
+insert into municipio (idmunicipio, nome, iduf) values (2, 'Canoinhas', 1);
+insert into municipio (idmunicipio, nome, iduf) values (3, 'Porto Vitória', 2);
+insert into municipio (idmunicipio, nome, iduf) values (4, 'General Carneiro', 2);
+insert into municipio (idmunicipio, nome, iduf) values (5, 'São Paulo', 3);
+insert into municipio (idmunicipio, nome, iduf) values (6, 'Rio de Janeiro', 6);
+insert into municipio (idmunicipio, nome, iduf) values (7, 'Uberlândia', 4);
+insert into municipio (idmunicipio, nome, iduf) values (8, 'Porto Alegre', 5);
+insert into municipio (idmunicipio, nome, iduf) values (9, 'União da Vitória', 2);
+select * from municipio
