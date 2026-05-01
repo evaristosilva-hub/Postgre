@@ -281,8 +281,25 @@ create table complemento (
 	constraint pk_cpl_idcomplemento primary key (idcomplemento),
 	constraint un_cpl_nome unique (nome)
 );
+insert into complemento (idcomplemento, nome)values(1, 'Casa');
+insert into complemento (idcomplemento, nome)values(2, 'Apartamento');
+
+select * from complemento;
+
+create table bairro (
+	idbairro integer not null,
+	nome varchar(30) not null,
+
+	constraint pk_brr_idbairro primary key (idbairro),
+	constraint un_brr_nome unique (nome)
+);
+
+insert into bairro (idbairro, nome) values (1,'Cidade Nova');
+insert into bairro (idbairro, nome) values (2,'Centro');
+insert into bairro (idbairro, nome) values (3,'São Pedro');
+insert into bairro (idbairro, nome) values (4,'Santa Rosa');
 
 
-
+select * from bairro
 
 		
