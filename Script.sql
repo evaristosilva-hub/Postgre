@@ -299,6 +299,10 @@ insert into bairro (idbairro, nome) values (2,'Centro');
 insert into bairro (idbairro, nome) values (3,'São Pedro');
 insert into bairro (idbairro, nome) values (4,'Santa Rosa');
 
+					--relacionamento entre tabelas usando chave estrangeira
+alter table cliente add constraint fK_cln_idprofissao foreign key (idprofissao) references profissao (idprofissao);
+
+				--alterando dados da tabela profissão--
 --Estudante -> 1,9,10,12,15,17
 --Engenheiro -> 2
 --Pedreiro -> 3
@@ -310,14 +314,46 @@ alter table cliente rename column profissao to idprofissao;
 alter table cliente drop idprofissao;
 select * from cliente		
 alter table cliente add idprofissao integer;
-
---relacionamento entre tabelas usando chave estrangeira
-alter table cliente add constraint fK_cln_idprofissao foreign key (idprofissao) references profissao (idprofissao);
-
 update cliente set idprofissao = 1 where idcliente in (1,9,10,12,15,17);
 update cliente set idprofissao = 2 where idcliente = 2;
 update cliente set idprofissao = 3 where idcliente = 3;
 update cliente set idprofissao = 4 where idcliente in (4,5);
 update cliente set idprofissao = 5 where idcliente in (6,7,8,13);
 
-select * from profissao;
+SELECT * FROM cliente
+ORDER BY cliente ASC;
+
+				--alterando dados da tabela nacionalidade--
+alter table cliente drop nacionalidade;
+alter table cliente add idnacionalidade integer;
+alter table cliente add constraint fk_cln_idnacionalidade foreign key (idnacionalidade) references nacionalidade (idnacionalidade);
+update cliente set idnacionalidade = 1 where idcliente in (1,2,3,4,6,10,11,14);
+update cliente set idnacionalidade = 2 where idcliente in (5,7);
+update cliente set idnacionalidade = 3 where idcliente = 8;
+update cliente set idnacionalidade = 4 where idcliente in (9,13);
+
+					--alterando dados da tabela complemento--
+
+--Apartamento -> (2,3,7,17)
+--Casa -> (1,4,9,12,13)
+alter table cliente drop complemento;
+alter table cliente add idcomplemento integer;
+alter table cliente add constraint fk_cpl_idcomplemento foreign key (idcomplemento) references complemento (idcomplemento);
+update cliente set idcomplemento = 1 where idcliente in (1,4,9,12,13);
+update cliente set idcomplemento = 2 where idcliente in (2,3,7,17);
+
+select * from cliente
+
+					--alterando dados da tabela bairro--
+--1,'Cidade Nova'=(1,13,12,2)
+--2,'Centro'=(8,9,17,3,6)
+--3,'São Pedro'=(5,4)
+--4,'Santa Rosa'=(7)
+alter table cliente drop bairro;
+alter table cliente add idbairro integer;
+alter table cliente add constraint fk_brr_idbairro foreign key (idbairro) references bairro (idbairro);
+update cliente set idbairro = 1 where idcliente in (1,13,12,2);
+update cliente set idbairro = 2 where idcliente in (8,9,17,3,6);
+update cliente set idbairro = 3 where idcliente in (5,6);
+update cliente set idbairro = 4 where idcliente = 7;
+
