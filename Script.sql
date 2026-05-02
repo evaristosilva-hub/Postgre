@@ -191,7 +191,7 @@ select * from cliente;
 
 update cliente set nome = 'Teste' where idcliente = 1;
 --Pode-se alterar varios campos.
-update cliente set nome = 'Adriano', genero = 'M' , numero = '241' where idcliente = 4;
+update cliente set nome = 'Manoel', genero = 'M' , numero = '241' where idcliente = 1;
 
 --Comando INSERT INTO simplificado
 insert into cliente (idcliente, nome) values (16, 'João');
@@ -480,11 +480,23 @@ insert into produto (idproduto, idfornecedor, nome, valor) values (7, 1, 'Gabine
 
 create table pedido(
 	idpedido integer not null,
-	icliente integer not null,
+	data_pedido date not null,
+	valor numeric (10,2),
+	idcliente integer not null,
 	idtransportadora integer not null,
 	idvendedor integer not null,
-	data_pedido date not null,
-	valor numeric not null(10,2),
+	
+	
 
-	constraint pk_ped_idpedido primary key (idpedido)
-)
+	constraint pk_ped_idpedido primary key (idpedido),
+	
+	constraint fk_ped_idcliente foreign key (idcliente) references cliente (idcliente),
+	constraint fk_ped_idtransportadora foreign key (idtransportadora) references transportadora (idtransportadora),
+	constraint fk_ped_idvendedor foreign key (idvendedor) references vendedor (idvendedor)
+);
+select * from vendedor
+insert into pedido (idpedido, data_pedido, valor, idcliente, idtransportadora, idvendedor) values (1, '2008-04-01', '1300', 1, 1, 1);
+insert into pedido (idpedido, data_pedido, valor, idcliente, idtransportadora, idvendedor) values (2, '2008-04-01', '500', 1, 1, 1);
+insert into pedido (idpedido, data_pedido, valor, idcliente, idtransportadora, idvendedor) values (3, '2008-04-02', '300', 11, 2, 5);
+insert into pedido (idpedido, data_pedido, valor, idcliente, idtransportadora, idvendedor) values (4, '2008-04-05', '1000', 8, 1, 7);
+insert into pedido (idpedido, data_pedido, valor, idcliente, idtransportadora, idvendedor) values (5, '2008-04-06', '200', 9, 2, 6);
