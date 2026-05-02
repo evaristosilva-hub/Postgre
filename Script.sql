@@ -568,3 +568,23 @@ select * from pedido where valor between 1000 and 1500
 --7. Os pedidos que o valor não esteja entre R$100,00 e R$500,00
 select * from pedido where valor not between 100 and 500
 
+--8. Os pedidos do vendedor André ordenado pelo valor decrescente.
+select * from pedido where idvendedor = 1 order by valor desc
+
+--9. Os pedidos cliente Manoel ordenado pelo valor em ordem crescente.
+select * from pedido where idcliente = 1 order by valor 
+
+--10. Os pedidos da cliente Jéssica que foram feitos pelo vendedor André
+select * from pedido where idcliente = 15  and idvendedor = 1
+
+--11. Os pedidos que foram transportados pela transportadora União Transporte
+select * from pedido where idtransportadora = 2
+
+--12. Os pedidos feitos pela vendedora Maria ou pela Aline
+select * from pedido where idvendedor = 5  or idvendedor = 7
+
+
+
+select * from vendedor
+
+
