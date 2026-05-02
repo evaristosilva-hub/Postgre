@@ -345,6 +345,7 @@ update cliente set idcomplemento = 2 where idcliente in (2,3,7,17);
 
 select * from cliente
 
+---------------------------------------------------------------------------------------------------------------------------------
 					--alterando dados da tabela bairro--
 --1,'Cidade Nova'=(1,13,12,2)
 --2,'Centro'=(8,9,17,3,6)
@@ -545,7 +546,7 @@ insert into pedido_produto(idpedido, idproduto, quantidade, valor_unitario) valu
 insert into pedido_produto(idpedido, idproduto, quantidade, valor_unitario) values (14,6,3,'100');
 insert into pedido_produto(idpedido, idproduto, quantidade, valor_unitario) values (15,3,1,'200');
 
-
+-----------------------------------------------------------------------------------------------------------------------------
 							--Consultas simples--
 --1. Somente o nome de todos os vendedores em alfabética.
 select nome from vendedor order by nome asc 
@@ -617,5 +618,7 @@ select * from pedido_produto where idpedido = 1
 select * from pedido_produto where idpedido = 6 or idpedido = 10
 
 select * from cliente
+
+				--Funções Agregadas--
 
 
