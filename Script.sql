@@ -490,7 +490,6 @@ create table pedido(
 	
 
 	constraint pk_ped_idpedido primary key (idpedido),
-	
 	constraint fk_ped_idcliente foreign key (idcliente) references cliente (idcliente),
 	constraint fk_ped_idtransportadora foreign key (idtransportadora) references transportadora (idtransportadora),
 	constraint fk_ped_idvendedor foreign key (idvendedor) references vendedor (idvendedor)
@@ -545,3 +544,27 @@ insert into pedido_produto(idpedido, idproduto, quantidade, valor_unitario) valu
 insert into pedido_produto(idpedido, idproduto, quantidade, valor_unitario) values (13,4,1,'150');
 insert into pedido_produto(idpedido, idproduto, quantidade, valor_unitario) values (14,6,3,'100');
 insert into pedido_produto(idpedido, idproduto, quantidade, valor_unitario) values (15,3,1,'200');
+
+
+							--Consultas simples--
+--1. Somente o nome de todos os vendedores em alfabética.
+select nome from vendedor order by nome asc 
+
+--2. Os produtos que preço seja maior que R$200,00 em ordem crescente pelo preço.
+select nome ,valor from produto where valor > '200' order by valor asc;
+
+--3. O nome do produto, o preço, o preço ajustado em 10%, ordenado pelo nome do produto.
+select nome, valor, cast(valor * 1.10 as numeric(10,2)) as valor_ajustado from produto valor order by nome asc
+
+--4. Os municipios do Rio Grande do Sul.
+select * from municipio where iduf = 5
+
+--5. Os pedidos feitos entre 10/04/2008 e 25/04/2008 ordenado pelo valor
+select * from pedido where data_pedido between '2008-04-10' and '2008-04-25' order by valor
+
+--6. Os pedidos que valor esteja entre R$1.000,00 e R$1.500,00
+select * from pedido where valor between 1000 and 1500
+
+--7. Os pedidos que o valor não esteja entre R$100,00 e R$500,00
+select * from pedido where valor not between 100 and 500
+
