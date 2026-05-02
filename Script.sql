@@ -583,8 +583,39 @@ select * from pedido where idtransportadora = 2
 --12. Os pedidos feitos pela vendedora Maria ou pela Aline
 select * from pedido where idvendedor = 5  or idvendedor = 7
 
+--13. Os clientes que moram em União da Vitória e nem em Porto União
+select * from cliente where idmunicipio = 1 or idmunicipio = 9 
 
+--14. Os clientes que não moram em União da Vitória e nem em Porto União
+select * from cliente where idmunicipio <> 1 and idmunicipio <> 9
 
-select * from vendedor
+--15. Os clientes que não informaram o logradouro.
+select * from cliente where logradouro is null
+
+--16. Os clientes que moram em avenidas
+select * from cliente where logradouro like 'Av%'
+
+--17. Os vendedores que o nome começa com a letra S.
+select * from vendedor where nome like '%S%'
+
+--18. Os vendedores que o nome termina com a letra A
+select * from vendedor where nome like '%a'
+
+--19. Os vendedores que não começa letra A
+select * from vendedor where nome not like 'A%'
+
+--20. Os municipios que começam com a letra P e São Catarina
+select * from municipio where nome like 'P%' and iduf = 1
+
+--21. As Transportadora que informaram o endereço
+select * from transportadora where logradouro is not null 
+
+--22. Os itens do pedido 01.
+select * from pedido_produto where idpedido = 1
+
+--23. Os itens do pedido 06 ou do pedido 10
+select * from pedido_produto where idpedido = 6 or idpedido = 10
+
+select * from cliente
 
 
