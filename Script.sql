@@ -396,4 +396,95 @@ insert into municipio (idmunicipio, nome, iduf) values (6, 'Rio de Janeiro', 6);
 insert into municipio (idmunicipio, nome, iduf) values (7, 'Uberlândia', 4);
 insert into municipio (idmunicipio, nome, iduf) values (8, 'Porto Alegre', 5);
 insert into municipio (idmunicipio, nome, iduf) values (9, 'União da Vitória', 2);
+
 select * from municipio
+select *from cliente
+
+alter table cliente drop municipio;
+alter table cliente drop uf;
+alter table cliente add idmunicipio integer;
+alter table cliente add constraint fk_cliente_idmunicipio foreign key (idmunicipio) references municipio (idmunicipio);
+
+update cliente set idmunicipio = 1 where idcliente in (1,2,10,11);
+update cliente set idmunicipio = 2 where idcliente in (3,12);
+update cliente set idmunicipio = 3 where idcliente = 4;
+update cliente set idmunicipio = 4 where idcliente in(5);
+update cliente set idmunicipio = 5 where idcliente in (6,13);
+update cliente set idmunicipio = 6 where idcliente in (7);
+update cliente set idmunicipio = 7 where idcliente in (8);
+update cliente set idmunicipio = 8 where idcliente in (9);
+update cliente set idmunicipio = 9 where idcliente in (14,15);
+
+create table fornecedor (
+	idfornecedor integer not null,
+	nome varchar(50) not null,
+	constraint pk_fnc_idfornecedor primary key (idfornecedor),
+	constraint un_fnc_nome unique (nome)
+);
+insert into fornecedor (idfornecedor, nome) values (1, 'Cap. Computadores');
+insert into fornecedor (idfornecedor, nome) values (2, 'AA. Computadores');
+insert into fornecedor (idfornecedor, nome) values (3, 'BB. Máquinas');
+
+select * from fornecedor
+
+
+create table vendedor (
+	idvendedor integer not null,
+	nome varchar(50) not null,
+	constraint pk_vdd_idvendedor primary key (idvendedor),
+	constraint un_vdd_nome unique (nome)
+);
+insert into vendedor (idvendedor, nome) values (1, 'André');
+insert into vendedor (idvendedor, nome) values (2, 'Alisson');
+insert into vendedor (idvendedor, nome) values (3, 'José');
+insert into vendedor (idvendedor, nome) values (4, 'Ailton');
+insert into vendedor (idvendedor, nome) values (5, 'Maria');
+insert into vendedor (idvendedor, nome) values (6, 'Suelem');
+insert into vendedor (idvendedor, nome) values (7, 'Aline');
+insert into vendedor (idvendedor, nome) values (8, 'Silvana'); 
+
+select * from transportadora
+
+create table transportadora(
+	idtransportadora integer not null,
+	idmunicipio integer not null,
+	nome varchar(50) not null,
+	logradouro varchar(50),
+	numero varchar(10),
+
+	constraint pk_tra_idtransportadora primary key (idtransportadora),
+	constraint un_tra_nome unique (nome),
+	constraint fk_tra_idmunicipio foreign key (idmunicipio) references municipio (idmunicipio)
+);
+insert into transportadora (idtransportadora, idmunicipio, nome, logradouro, numero) values (1, 9, 'BS.Transportes', 'Rua das Limas', '01');
+insert into transportadora (idtransportadora, idmunicipio, nome, logradouro, numero) values (2, 5, 'União Trasportes', '', '');
+
+create table produto (
+	idproduto integer not null,
+	idfornecedor integer not null,
+	nome varchar(50),
+	valor numeric(10,2),
+
+	constraint pk_prd_idproduto primary key (idproduto),
+	constraint un_prd_nome unique (nome),
+	constraint fk_prd_idfornecedor foreign key (idfornecedor) references fornecedor(idfornecedor)
+);
+select * from produto
+insert into produto (idproduto, idfornecedor, nome, valor) values (1, 1, 'Microcomputador', '800');
+insert into produto (idproduto, idfornecedor, nome, valor) values (2, 1, 'Monitor', '500');
+insert into produto (idproduto, idfornecedor, nome, valor) values (3, 2, 'Placa Mãe', '200');
+insert into produto (idproduto, idfornecedor, nome, valor) values (4, 2, 'HD', '150');
+insert into produto (idproduto, idfornecedor, nome, valor) values (5, 2, 'Placa de vídeo', '200');
+insert into produto (idproduto, idfornecedor, nome, valor) values (6, 3, 'Memória Ram', '100');
+insert into produto (idproduto, idfornecedor, nome, valor) values (7, 1, 'Gabinete', '35');
+
+create table pedido(
+	idpedido integer not null,
+	icliente integer not null,
+	idtransportadora integer not null,
+	idvendedor integer not null,
+	data_pedido date not null,
+	valor numeric not null(10,2),
+
+	constraint pk_ped_idpedido primary key (idpedido)
+)
