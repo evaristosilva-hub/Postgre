@@ -121,7 +121,6 @@ values(15,'Jessica', '', '', '2001-01-30', 'F',
 		'Estudante', '', '', '', 
 		'', '', 'Porto União', 'SC');
 
-
 select * from cliente;
 
 select nome, data_nascimento from cliente;
@@ -216,7 +215,9 @@ insert into cliente (idcliente, nome, cpf, rg, data_nascimento, genero,
 					profissao, nacionalidade, logradouro, numero, complemento,
 					bairro, municipio, uf) values (18, 'Sandra', null, null, null,
 					'M','Professor', 'Italiana', '', '12', 'Bloco A', '', '', '');
+					
 
+				
 --2. Altere os dados do cliente Maicon: 
 						--O CPF para 45390569432 
 						--O gênero para M 
@@ -494,9 +495,53 @@ create table pedido(
 	constraint fk_ped_idtransportadora foreign key (idtransportadora) references transportadora (idtransportadora),
 	constraint fk_ped_idvendedor foreign key (idvendedor) references vendedor (idvendedor)
 );
-select * from vendedor
+select * from pedido
+
 insert into pedido (idpedido, data_pedido, valor, idcliente, idtransportadora, idvendedor) values (1, '2008-04-01', '1300', 1, 1, 1);
 insert into pedido (idpedido, data_pedido, valor, idcliente, idtransportadora, idvendedor) values (2, '2008-04-01', '500', 1, 1, 1);
 insert into pedido (idpedido, data_pedido, valor, idcliente, idtransportadora, idvendedor) values (3, '2008-04-02', '300', 11, 2, 5);
 insert into pedido (idpedido, data_pedido, valor, idcliente, idtransportadora, idvendedor) values (4, '2008-04-05', '1000', 8, 1, 7);
 insert into pedido (idpedido, data_pedido, valor, idcliente, idtransportadora, idvendedor) values (5, '2008-04-06', '200', 9, 2, 6);
+insert into pedido (idpedido, data_pedido, valor, idcliente, idtransportadora, idvendedor) values (6, '2008-04-06', '1985', 10, 1, 6);
+insert into pedido (idpedido, data_pedido, valor, idcliente, idtransportadora, idvendedor) values (7, '2008-04-06', '800', 3, 1, 7);
+insert into pedido (idpedido, data_pedido, valor, idcliente, idtransportadora, idvendedor) values (8, '2008-04-06', '175', 10, 1, 7);
+insert into pedido (idpedido, data_pedido, valor, idcliente, idtransportadora, idvendedor) values (9, '2008-04-07', '1300', 12, 1, 8);
+insert into pedido (idpedido, data_pedido, valor, idcliente, idtransportadora, idvendedor) values (10, '2008-04-10', '200', 6, 1, 8);
+insert into pedido (idpedido, data_pedido, valor, idcliente, idtransportadora, idvendedor) values (11, '2008-04-15', '300', 15, 2, 1);
+insert into pedido (idpedido, data_pedido, valor, idcliente, idtransportadora, idvendedor) values (12, '2008-04-20', '300', 15, 2, 5);
+insert into pedido (idpedido, data_pedido, valor, idcliente, idtransportadora, idvendedor) values (13, '2008-04-20', '500', 9, 1, 7);
+insert into pedido (idpedido, data_pedido, valor, idcliente, idtransportadora, idvendedor) values (14, '2008-04-23', '300', 2, 1, 5);
+insert into pedido (idpedido, data_pedido, valor, idcliente, idtransportadora, idvendedor) values (15, '2008-04-25', '200', 11, 1, 5);
+
+create table pedido_produto(
+	idpedido integer not null,
+	idproduto integer not null,
+	quantidade integer not null,
+	valor_unitario numeric(10,2),
+	constraint fk_ped_idproduto foreign key (idproduto) references produto (idproduto),
+	constraint fk_prd_idpedido foreign key (idpedido) references pedido (idpedido)
+);
+select * from pedido_produto
+insert into pedido_produto(idpedido, idproduto, quantidade, valor_unitario) values (1,1,1,'800');
+insert into pedido_produto(idpedido, idproduto, quantidade, valor_unitario) values (1,2,1,'500');
+insert into pedido_produto(idpedido, idproduto, quantidade, valor_unitario) values (2,2,1,'500');
+insert into pedido_produto(idpedido, idproduto, quantidade, valor_unitario) values (3,4,2,'150');
+insert into pedido_produto(idpedido, idproduto, quantidade, valor_unitario) values (4,1,1,'800');
+insert into pedido_produto(idpedido, idproduto, quantidade, valor_unitario) values (4,3,1,'200');
+insert into pedido_produto(idpedido, idproduto, quantidade, valor_unitario) values (5,3,1,'200');
+insert into pedido_produto(idpedido, idproduto, quantidade, valor_unitario) values (6,1,2,'800');
+insert into pedido_produto(idpedido, idproduto, quantidade, valor_unitario) values (6,7,1,'35');
+insert into pedido_produto(idpedido, idproduto, quantidade, valor_unitario) values (6,5,1,'200');
+insert into pedido_produto(idpedido, idproduto, quantidade, valor_unitario) values (6,4,1,'150');
+insert into pedido_produto(idpedido, idproduto, quantidade, valor_unitario) values (7,1,1,'800');
+insert into pedido_produto(idpedido, idproduto, quantidade, valor_unitario) values (8,7,5,'35');
+insert into pedido_produto(idpedido, idproduto, quantidade, valor_unitario) values (9,1,1,'800');
+insert into pedido_produto(idpedido, idproduto, quantidade, valor_unitario) values (9,2,1,'500');
+insert into pedido_produto(idpedido, idproduto, quantidade, valor_unitario) values (10,5,1,'200');
+insert into pedido_produto(idpedido, idproduto, quantidade, valor_unitario) values (11,5,1,'200');
+insert into pedido_produto(idpedido, idproduto, quantidade, valor_unitario) values (11,6,1,'100');
+insert into pedido_produto(idpedido, idproduto, quantidade, valor_unitario) values (12,2,1,'500');
+insert into pedido_produto(idpedido, idproduto, quantidade, valor_unitario) values (13,3,1,'200');
+insert into pedido_produto(idpedido, idproduto, quantidade, valor_unitario) values (13,4,1,'150');
+insert into pedido_produto(idpedido, idproduto, quantidade, valor_unitario) values (14,6,3,'100');
+insert into pedido_produto(idpedido, idproduto, quantidade, valor_unitario) values (15,3,1,'200');
