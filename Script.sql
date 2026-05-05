@@ -618,7 +618,29 @@ select * from pedido_produto where idpedido = 1
 select * from pedido_produto where idpedido = 6 or idpedido = 10
 
 select * from cliente
-
+-------------------------------------------------------------------------------
 				--Funções Agregadas--
+
+
+--Extrair a media de valores dos pedidos--
+select avg(valor) from pedido 
+select * from pedido
+
+
+--Contagem de registros--
+select count(idmunicipio) from municipio
+select count(*) from municipio
+select count(*) from pedido
+select count(*) from vendedor
+select count(*) from cliente
+select count(logradouro) from transportadora 
+select count(idtransportadora) from transportadora
+select count(idmunicipio) from municipio where iduf = 2
+select * from municipio
+
+
+--Selcionar valor MAXIMO e MINIMO
+select max(valor) from pedido
+select min(valor) from pedido
 
 
