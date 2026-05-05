@@ -639,8 +639,45 @@ select count(idmunicipio) from municipio where iduf = 2
 select * from municipio
 
 
---Selcionar valor MAXIMO e MINIMO
+--Selcionar valor MAXIMO e MINIMO tambem o SOMATORIO
 select max(valor) from pedido
 select min(valor) from pedido
+select min(valor), max(valor) from pedido
+select sum(valor) from pedido
+
+--Agrupamento
+select idcliente, sum(valor) from pedido group by idcliente having sum(valor) > 500
+select idcliente, sum(valor) from pedido group by idcliente
+select idcliente, valor from pedido
+
+						--Exercicios--
+--1. A média dos valores de vendas dos vendedores que venderam mais que R$ 200,00
+select * from vendedor
+select idvendedor, avg(valor) from pedido group by idvendedor having avg(valor) > 200 
+
+--2. Os vendedores que venderam mais que R$ 1500,00.
+select idvendedor, sum(valor) from pedido group by idvendedor having sum(valor) > 1500
+
+--3. O somatório das vendas de cada vendedor.
+select idvendedor, sum(valor) from pedido group by idvendedor
+
+--4. A quantidade de municípios.
+select count(idmunicipio) from municipio
+
+--5. A quantidade de municípios que são do Paraná ou de Santa Catarina.
+
+--6. A quantidade de municípios por estado.
+
+--7. A quantidade de clientes que informaram o logradouro.
+
+--8. A quantidade de clientes por município.
+
+--9. A quantidade de fornecedores.
+
+--10. A quantidade de produtos por fornecedor.
+
+--11. A média de preços dos produtos do fornecedor Cap. Computadores.
+
+--12. O somatório dos preços de todos os produtos.
 
 
