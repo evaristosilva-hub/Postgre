@@ -665,19 +665,100 @@ select idvendedor, sum(valor) from pedido group by idvendedor
 select count(idmunicipio) from municipio
 
 --5. A quantidade de municípios que são do Paraná ou de Santa Catarina.
+select count(idmunicipio) from municipio where iduf = 1 or iduf = 2
 
 --6. A quantidade de municípios por estado.
+select iduf, count(idmunicipio) from municipio group by iduf
 
 --7. A quantidade de clientes que informaram o logradouro.
+select count(idcliente) from cliente where logradouro is not null
 
 --8. A quantidade de clientes por município.
+select idmunicipio, count (idcliente) from cliente group by idmunicipio
 
 --9. A quantidade de fornecedores.
+select count(idfornecedor) from fornecedor
 
 --10. A quantidade de produtos por fornecedor.
+select idfornecedor, count(idproduto) from produto group by idfornecedor
 
 --11. A média de preços dos produtos do fornecedor Cap. Computadores.
+select avg(valor) from produto where idfornecedor = 1
 
 --12. O somatório dos preços de todos os produtos.
+select sum(valor) from produto
+
+--13. O nome do produto e o preço somente do produto mais caro.
+select * from produto
+SELECT produto, MAX(valor) FROM produto WHERE idproduto = 1 GROUP BY produto;
+
+--14. O nome do produto e o preço somente do produto mais barato.
+SELECT produto, min(valor) FROM produto WHERE idproduto = 7 GROUP BY produto;
+
+--15. A média de preço de todos os produtos.
+select avg(valor) from produto
+
+--16. A quantidade de transportadoras.
+select count(idtransportadora) from transportadora
+
+--17. A média do valor de todos os pedidos.
+select avg(valor) from pedido
+
+--18. O somatório do valor do pedido agrupado por cliente.
+select idcliente, sum(valor) from pedido group by idcliente
+
+--19. O somatório do valor do pedido agrupado por vendedor.
+select idvendedor, sum(valor) from pedido group by idvendedor
+
+--20. O somatório do valor do pedido agrupado por transportadora.
+select idtransportadora, sum(valor) from pedido group by idtransportadora
+
+--21. O somatório do valor do pedido agrupado pela data.
+select * from pedido
+select data_pedido, sum(valor) from pedido group by data_pedido
+
+--22. O somatório do valor do pedido agrupado por cliente, vendedor e transportadora.
+select idcliente, idvendedor, idtransportadora, sum(valor) from pedido group by idcliente, idvendedor, idtransportadora
+
+--23. O somatório do valor do pedido que esteja entre 01/04/2008 e 10/12/2009 e que seja maior que R$ 200,00.
+select sum(valor) from pedido where data_pedido between '2008-04-01' and '2009-12-10' and valor > 200
+
+--24. A média do valor do pedido do vendedor André.
+select * from transportadora
+select count(idpedido) from  pedido where idtransportadora = 1
+
+--25. A média do valor do pedido da cliente Jéssica.
+select avg(valor) from pedido where idcliente = 15
+
+--26. A quantidade de pedidos transportados pela transportadora BS. Transportes.
+select count(idpedido) from pedido where idtransportadora = 1
+
+--27. A quantidade de pedidos agrupados por vendedor.
+select idvendedor, count(idpedido) from pedido group by idvendedor
+
+--28. A quantidade de pedidos agrupados por cliente.
+select idcliente, count(idpedido) from pedido group by idcliente
+
+--29. A quantidade de pedidos entre 15/04/2008 e 25/04/2008.
+select count(idpedido) from pedido where data_pedido between '2008-04-15' and '2008-04-25'
+
+--30. A quantidade de pedidos que o valor seja maior que R$ 1.000,00.
+select count(idpedido) from pedido where valor > 1000
+
+--31. A quantidade de microcomputadores vendida.
+
+--32. A quantidade de produtos vendida agrupado por produto.
+--33. O somatório do valor dos produtos dos pedidos, agrupado por pedido.
+--34. A quantidade de produtos agrupados por pedido.
+--35. O somatório do valor total de todos os produtos do pedido.
+--36. A média dos produtos do pedido 6.
+--37. O valor do maior produto do pedido.
+--38. O valor do menor produto do pedido.
+--39. O somatório da quantidade de produtos por pedido.
+--40. O somatório da quantidade de todos os produtos do pedido.
+
+
+
+
 
 
